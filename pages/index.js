@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { getSortedPostsData } from '../lib/posts';
 
 import Layout, { siteTitle } from '../components/Layout';
+import Date from '../components/Date';
 
 import utilStyles from '../styles/utils.module.css';
 
@@ -56,7 +58,7 @@ const Home = ({ allPostsData }) => {
         </p>
         <p>
           (This is a sample website - you'll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          <a href="https://nextjs.org/learn">the Next.js tutorial</a>.)
         </p>
       </section>
 
@@ -65,11 +67,11 @@ const Home = ({ allPostsData }) => {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <a>{title}</a>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
