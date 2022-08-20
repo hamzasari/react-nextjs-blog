@@ -7,16 +7,6 @@ import Layout, { siteTitle } from '../components/Layout';
 import utilStyles from '../styles/utils.module.css';
 
 /**
- * If we want to use server side rendering, we should use
- *  getServerSideProps
- * method.
- *
- * This way, we can get values on every user request.
- *
- * This method also runs on server side.
- */
-
-/**
  * This method runs on server side.
  * It is used only for static generation.
  *
@@ -33,7 +23,26 @@ export const getStaticProps = async () => {
   };
 };
 
+/**
+ * If we want to use server side rendering, we should use
+ *  getServerSideProps
+ * method.
+ * This is also an async function and it should be exported like getStaticProps function.
+ *
+ * This way, we can get values on every user request.
+ *
+ * This method also runs on server side.
+ */
+
+/**
+ * Home page component
+ *
+ * @param {object} props props
+ * @param {Array} props.allPostsData all posts data
+ * @returns {JSX.Element} home page
+ */
 const Home = ({ allPostsData }) => {
+  console.log(allPostsData);
   return (
     <Layout home>
       <Head>
