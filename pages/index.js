@@ -6,6 +6,23 @@ import Layout, { siteTitle } from '../components/Layout';
 
 import utilStyles from '../styles/utils.module.css';
 
+/**
+ * If we want to use server side rendering, we should use
+ *  getServerSideProps
+ * method.
+ *
+ * This way, we can get values on every user request.
+ *
+ * This method also runs on server side.
+ */
+
+/**
+ * This method runs on server side.
+ * It is used only for static generation.
+ *
+ * Values are only calculated during build time and never changed,
+ * if a user requests the page again, server only will send the pre-built html.
+ */
 export const getStaticProps = async () => {
   const allPostsData = getSortedPostsData();
 
