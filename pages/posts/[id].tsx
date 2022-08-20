@@ -1,13 +1,14 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 
 import Layout from '../../components/Layout';
 import Date from '../../components/Date';
 
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import { getAllPostIds, getPostData, PostData } from '../../lib/posts';
 
 import utilStyles from '../../styles/utils.module.css';
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
 
   return {
@@ -16,7 +17,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }: { params: { id: string; }}) => {
   const postData = await getPostData(params.id);
 
   return {
@@ -26,7 +27,11 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const Post = ({ postData }) => {
+interface Props {
+  postData: PostData;
+}
+
+const Post = ({ postData }: Props): JSX.Element => {
   return (
     <Layout>
       <Head>

@@ -8,7 +8,12 @@ import styles from './styles.module.css';
 const name = 'Hamza Sarı';
 export const siteTitle = 'Next.js Sample Website';
 
-const Layout = ({ children, home }) => {
+interface Props {
+  children: React.ReactNode;
+  home?: boolean;
+}
+
+const Layout = ({ children, home }: Props) => {
   return (
     <div className={styles.container}>
       <Head>

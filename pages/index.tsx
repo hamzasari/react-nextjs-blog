@@ -1,7 +1,8 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, PostItem } from '../lib/posts';
 
 import Layout, { siteTitle } from '../components/Layout';
 import Date from '../components/Date';
@@ -15,7 +16,7 @@ import utilStyles from '../styles/utils.module.css';
  * Values are only calculated during build time and never changed,
  * if a user requests the page again, server only will send the pre-built html.
  */
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
 
   return {
@@ -27,7 +28,7 @@ export const getStaticProps = async () => {
 
 /**
  * If we want to use server side rendering, we should use
- *  getServerSideProps
+ *  getServerSideProps: GetServerSideProps
  * method.
  * This is also an async function and it should be exported like getStaticProps function.
  *
@@ -36,6 +37,10 @@ export const getStaticProps = async () => {
  * This method also runs on server side.
  */
 
+interface Props {
+  allPostsData: PostItem[];
+}
+
 /**
  * Home page component
  *
@@ -43,7 +48,7 @@ export const getStaticProps = async () => {
  * @param {Array} props.allPostsData all posts data
  * @returns {JSX.Element} home page
  */
-const Home = ({ allPostsData }) => {
+const Home = ({ allPostsData }: Props): JSX.Element => {
   return (
     <Layout home>
       <Head>
