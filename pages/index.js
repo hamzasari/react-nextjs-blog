@@ -44,7 +44,6 @@ export const getStaticProps = async () => {
  * @returns {JSX.Element} home page
  */
 const Home = ({ allPostsData }) => {
-  console.log(allPostsData);
   return (
     <Layout home>
       <Head>
